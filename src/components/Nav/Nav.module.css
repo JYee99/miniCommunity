@@ -1,0 +1,23 @@
+.wrapper {
+  width: 800px;
+  margin: 0 auto;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+a {
+  color: rgb(95, 60, 6);
+  border: 1px solid rgb(95, 60, 6);
+  padding: 14px 20px;
+  border-radius: 1000px;
+  transition: all 0.15s ease-in-out;
+  margin: 0;
+  margin-right: 30px;
+}
+
+a:hover {
+  background-color: rgb(95, 60, 6);
+  color: white;
+}
