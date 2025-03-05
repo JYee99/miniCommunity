@@ -1,7 +1,8 @@
 .formWrapper {
   width: 800px;
   margin: 0 auto;
-  color: rgb(95, 60, 6);
+  color: var(--mainColor);
+  padding: 10px;
 }
 .inputContainer {
   display: flex;
@@ -25,13 +26,13 @@
 input {
   outline: none;
   padding: 5px 10px;
-  border-color: rgb(143, 124, 99);
+  border-color: var(--subColor);
   background-color: antiquewhite;
   border-style: solid;
 }
 #desc {
   outline: none;
-  border: 2px solid rgba(143, 124, 99);
+  border: 2px solid var(--subColor);
   background-color: antiquewhite;
   width: 100%;
   height: 600px;
@@ -45,14 +46,14 @@ input {
 }
 .btnWrapper button {
   margin: 0 auto;
-  border: 2px solid rgba(143, 124, 99);
-  color: rgb(95, 60, 6);
+  border: 2px solid var(--subColor);
+  color: var(--mainColor);
   padding: 15px 20px;
   font-size: 1rem;
   transition: all 0.2s ease-in-out;
 }
 .btnWrapper button:hover {
-  background-color: rgba(95, 60, 6);
-  border-color: rgba(95, 60, 6);
+  background-color: var(--mainColor);
+  border-color: var(--mainColor);
   color: wheat;
 }

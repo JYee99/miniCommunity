@@ -1,15 +1,21 @@
 import React, { useState } from "react";
 import styles from "./Write.module.css";
+import { getTimeUtil } from "../utils/getTime";
 
 const Write = () => {
-  const [write, setWrite] = useState({
+  const initialWrite = {
     id: "",
     title: "",
     nickName: "",
     password: "",
     password2: "",
     desc: "",
-  });
+    date: "",
+    likeCount: "",
+    viewCount: "",
+  };
+  const [write, setWrite] = useState(initialWrite);
+
   const passwordConfirm = () => {
     if (write.password.length < 4) {
       alert("비밀번호를 4글자 이상 입력해 주세요.");
@@ -26,8 +32,8 @@ const Write = () => {
       ...write,
       [e.target.name]: e.target.value,
     });
-    console.log(write);
   };
+
   const handleSubmit = (e) => {
     passwordConfirm();
     const ranId = new Date().getTime().toString();
@@ -35,9 +41,10 @@ const Write = () => {
     setWrite({
       ...write,
       id: ranId,
+      date: getTimeUtil(),
     });
-    console.log(write);
   };
+
   return (
     <form className={styles.formWrapper} onSubmit={handleSubmit}>
       <div className={styles.inputContainer}>
@@ -46,6 +53,7 @@ const Write = () => {
           <input
             type="text"
             name="title"
+            value={write.title}
             id={styles.writeTitle}
             required
             onChange={handelOnChange}
@@ -56,6 +64,7 @@ const Write = () => {
           <input
             type="text"
             name="nickName"
+            value={write.nickName}
             id={styles.writeName}
             required
             onChange={handelOnChange}
@@ -66,6 +75,7 @@ const Write = () => {
           <input
             type="password"
             name="password"
+            value={write.password}
             id={styles.writePasswrd}
             required
             onChange={handelOnChange}
@@ -76,6 +86,7 @@ const Write = () => {
           <input
             type="password"
             name="password2"
+            value={write.password2}
             id={styles.writePasswrd2}
             required
             onChange={handelOnChange}

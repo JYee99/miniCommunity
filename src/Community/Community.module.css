@@ -1,0 +1,45 @@
+.wrapper {
+  margin: 0 auto;
+  width: 800px;
+}
+.commuUl {
+  padding: 10px;
+}
+.commuList {
+  margin-bottom: 20px;
+  border-bottom: 2px solid var(--subColor);
+  padding-bottom: 10px;
+  padding-right: 10px;
+}
+.commuInfoTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.infoTitle {
+  font-size: 1.25rem;
+  font-weight: lighter;
+  color: var(--mainColor);
+  font-weight: bold;
+}
+.infoLikes {
+  font-size: 0.9rem;
+  border-radius: 50px;
+  color: var(--mainColor);
+  font-weight: bold;
+}
+
+.commuInfoBottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--subColor);
+}
+.infoNick {
+  width: 520px;
+}
+.infoDate,
+.infoViews {
+  font-size: 0.85rem;
+}
