@@ -19,3 +19,5 @@
   - 게시글 목록
   - 게시글 작성
   - 게시글 상세
+
+**노션: https://mint-dosa-022.notion.site/Mini-Community-App-1adf34d80bb680e2956feccd92b4946d**
