@@ -1,39 +1,47 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Community.module.css";
+import { collection, getDocs, orderBy, query } from "firebase/firestore";
+import { db } from "../firebase";
+import { useNavigate } from "react-router";
 
 const Community = () => {
-  const commuList = [
-    {
-      id: "123123",
-      title: "제목",
-      nickName: "닉네임",
-      date: "25.3.5 12시 39분",
-      likeCount: "5",
-      viewCount: "20",
-    },
-    {
-      id: "12432",
-      title: "제목2",
-      nickName: "닉네임2",
-      date: "25.3.5 12시 6분",
-      likeCount: "55",
-      viewCount: "240",
-    },
-    {
-      id: "321412",
-      title: "제목3",
-      nickName: "닉네임ㄴㄴ",
-      date: "25.3.5 19시 39분",
-      likeCount: "50",
-      viewCount: "220",
-    },
-  ];
+  const [commuList, setCommuList] = useState([]); // 상태로 관리!
+  const nav = useNavigate();
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const q = query(
+          collection(db, "communityList"),
+          orderBy("date", "desc")
+        );
+        const snapshot = await getDocs(q);
+        const list = snapshot.docs.map((doc) => ({
+          ...doc.data(),
+        }));
+        setCommuList(list); // 데이터 받아오면 상태 업데이트
+      } catch (e) {
+        console.error("error", e);
+      }
+    };
+
+    fetchData();
+  }, []);
+  console.log(commuList);
+
+  const listOnclick = (id) => {
+    nav(`Detail/${id}`);
+  };
+
   return (
     <div className={styles.wrapper}>
       <ul className={styles.commuUl}>
         {commuList.map((list) => {
           return (
-            <li key={commuList.id} className={styles.commuList}>
+            <li
+              key={list.id}
+              className={styles.commuList}
+              onClick={() => listOnclick(list.id)}
+            >
               <div className={styles.commuInfoTop}>
                 <h2 className={styles.infoTitle}>{list.title}</h2>
                 <span className={styles.infoLikes}>추천: {list.likeCount}</span>

@@ -1,0 +1,23 @@
+.wrapper {
+  width: 800px;
+  margin: 0 auto;
+  margin-top: 50px;
+  padding: 10px;
+}
+
+.info {
+  border: 1px solid#000;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.infoTitle {
+  width: 600px;
+}
+.infoRight {
+  display: flex;
+  flex-direction: column;
+}
+.inforDesc {
+  width: 100%;
+}

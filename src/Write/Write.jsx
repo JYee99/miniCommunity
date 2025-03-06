@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import styles from "./Write.module.css";
 import { getTimeUtil } from "../utils/getTime";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "../firebase";
+import { useNavigate } from "react-router";
 
 const Write = () => {
   const initialWrite = {
@@ -11,19 +14,29 @@ const Write = () => {
     password2: "",
     desc: "",
     date: "",
-    likeCount: "",
-    viewCount: "",
+    likeCount: 0,
+    viewCount: 0,
   };
   const [write, setWrite] = useState(initialWrite);
+  const nav = useNavigate();
+
+  const addWrite = async (newWrite) => {
+    try {
+      const doc = await addDoc(collection(db, "communityList"), newWrite);
+      console.log("doc id", doc.id);
+    } catch (e) {
+      console.log(error), e;
+    }
+  };
 
   const passwordConfirm = () => {
     if (write.password.length < 4) {
       alert("비밀번호를 4글자 이상 입력해 주세요.");
-      return;
+      return false;
     }
     if (write.password !== write.password2) {
       alert("비밀번호가 일치하지 않습니다.");
-      return;
+      return false;
     }
   };
 
@@ -35,16 +48,19 @@ const Write = () => {
   };
 
   const handleSubmit = (e) => {
-    passwordConfirm();
-    const ranId = new Date().getTime().toString();
     e.preventDefault();
-    setWrite({
+    passwordConfirm();
+    console.log("12");
+    const ranId = new Date().getTime().toString();
+    const newWrite = {
       ...write,
       id: ranId,
       date: getTimeUtil(),
-    });
+    };
+    addWrite(newWrite);
+    setWrite(initialWrite);
+    nav("/");
   };
-
   return (
     <form className={styles.formWrapper} onSubmit={handleSubmit}>
       <div className={styles.inputContainer}>
@@ -97,6 +113,7 @@ const Write = () => {
       <textarea
         name="desc"
         id={styles.desc}
+        value={write.desc}
         required
         onChange={handelOnChange}
       ></textarea>

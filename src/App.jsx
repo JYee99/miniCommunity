@@ -1,9 +1,10 @@
 import "./App.css";
+import Community from "./Community/Community";
 
 function App() {
   return (
     <>
-      <h1>miniCommunity App</h1>
+      <Community />
     </>
   );
 }
